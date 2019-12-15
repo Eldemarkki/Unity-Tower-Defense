@@ -90,7 +90,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2447080616745063289}
   - component: {fileID: 2447080616745063290}
+  - component: {fileID: 2293583769882919149}
   - component: {fileID: 2447080616745063291}
+  - component: {fileID: 7501193624037176361}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -127,11 +129,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 4
   weaponCooldown: 1
+  turretTargeting: 0
   damage: 1
   projectile: {fileID: 9082297348117089959, guid: 7fb7bf189384652469092e9c5015a17b,
     type: 3}
   projectileSpeed: 300
   rangeDisplay: {fileID: 7372283561339808073}
+--- !u!114 &2293583769882919149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447080616745063292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be438c9bae0458b4c97cb1518e6bba66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &2447080616745063291
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -167,11 +182,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 168917897
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: abc7fc6e96a7b5e46989a86530a1be05, type: 3}
-  m_Color: {r: 0.00226118, g: 0, b: 0.9622642, a: 1}
+  m_Color: {r: 0, g: 0.5974672, b: 0.9607843, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -181,3 +196,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &7501193624037176361
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2447080616745063292}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

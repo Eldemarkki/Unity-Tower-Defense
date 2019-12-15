@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Wave Unit", menuName = "Wave Unit"), System.Serializable]
+[CreateAssetMenu(fileName = "New Wave Unit", menuName = "Tower Defense/Wave Unit")]
 public class WaveUnit : ScriptableObject
 {
     public UnitType unitType;

@@ -9,7 +9,6 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private TMP_Text healthText;
 
     private int health;
-
     public int Health { get => health; set => SetHealth(value); }
 
     private void Awake()

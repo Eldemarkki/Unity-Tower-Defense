@@ -37,12 +37,12 @@ public class WaveSpawner : MonoBehaviour
 
                     spawnedUnits.Add(unit);
 
-                    yield return new WaitForSecondsRealtime(1f / waveUnit.spawnRate);
+                    yield return new WaitForSeconds(1f / waveUnit.spawnRate);
                 }
             }
             else if (unitType == UnitType.Wait)
             {
-                yield return new WaitForSecondsRealtime(waveUnit.waitTime);
+                yield return new WaitForSeconds(waveUnit.waitTime);
             }
         }
     }

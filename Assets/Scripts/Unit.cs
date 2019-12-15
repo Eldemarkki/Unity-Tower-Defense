@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
@@ -77,13 +76,4 @@ public class Unit : MonoBehaviour
             }
         }
     }
-}
-
-[CreateAssetMenu(fileName = "New Unit Settings", menuName = "Unit Settings"), Serializable]
-public class UnitSettings : ScriptableObject
-{
-    public Sprite sprite;
-    public Color spriteColor;
-    public float speed;
-    public int startingHealth;
 }
