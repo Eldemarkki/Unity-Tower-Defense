@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 
-public class Path : MonoBehaviour
+namespace Eldemarkki.TowerDefenseGame.Miscellaneous
 {
-    public Transform[] points;
-
-    private void OnDrawGizmos()
+    public class Path : MonoBehaviour
     {
-        if (points != null && points.Length >= 2)
+        public Transform[] points;
+
+        private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            for (int i = 0; i < points.Length - 1; i++)
+            if (points != null && points.Length >= 2)
             {
-                Vector3 p1 = points[i].position;
-                Vector3 p2 = points[i + 1].position;
-                Gizmos.DrawLine(p1, p2);
+                Gizmos.color = Color.red;
+                for (int i = 0; i < points.Length - 1; i++)
+                {
+                    Vector3 p1 = points[i].position;
+                    Vector3 p2 = points[i + 1].position;
+                    Gizmos.DrawLine(p1, p2);
+                }
             }
         }
     }

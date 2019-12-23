@@ -1,28 +1,31 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class MoneyManager : MonoBehaviour
+namespace Eldemarkki.TowerDefenseGame.Managers
 {
-    public static MoneyManager instance;
-
-    [SerializeField] private int money;
-    [SerializeField] private TMP_Text moneyText;
-    public int Money { get => money; set => SetMoney(value); }
-
-    private void Awake()
+    public class MoneyManager : MonoBehaviour
     {
-        instance = this;
-        SetMoney(money);
-    }
+        public static MoneyManager instance;
 
-    private void SetMoney(int value)
-    {
-        money = value;
-        moneyText.text = "$" + value;
-    }
+        [SerializeField] private int money;
+        [SerializeField] private TMP_Text moneyText;
+        public int Money { get => money; set => SetMoney(value); }
 
-    public bool HasEnoughMoneyForPurchase(int cost)
-    {
-        return money - cost >= 0;
+        private void Awake()
+        {
+            instance = this;
+            SetMoney(money);
+        }
+
+        private void SetMoney(int value)
+        {
+            money = value;
+            moneyText.text = "$" + value;
+        }
+
+        public bool HasEnoughMoneyForPurchase(int cost)
+        {
+            return money - cost >= 0;
+        }
     }
 }

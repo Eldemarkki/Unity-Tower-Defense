@@ -1,41 +1,45 @@
-﻿using TMPro;
+﻿using Eldemarkki.TowerDefenseGame.Units;
+using TMPro;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+namespace Eldemarkki.TowerDefenseGame.Managers
 {
-    public static HealthManager instance;
-
-    [SerializeField] private int maxHealth = 200;
-    [SerializeField] private TMP_Text healthText;
-
-    private int health;
-    public int Health { get => health; set => SetHealth(value); }
-
-    private void Awake()
+    public class HealthManager : MonoBehaviour
     {
-        if (instance != null)
+        public static HealthManager instance;
+
+        [SerializeField] private int maxHealth = 200;
+        [SerializeField] private TMP_Text healthText;
+
+        private int health;
+        public int Health { get => health; set => SetHealth(value); }
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (instance != null)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Health = maxHealth;
+            instance = this;
         }
 
-        Health = maxHealth;
-        instance = this;
-    }
-
-    private void SetHealth(int value)
-    {
-        health = value;
-        healthText.text = $"{health}/{maxHealth}";
-
-        if (health <= 0)
+        private void SetHealth(int value)
         {
-            Debug.Log("Game over!");
-        }
-    }
+            health = value;
+            healthText.text = $"{health}/{maxHealth}";
 
-    public void OnUnitReachedGoal(Unit unit)
-    {
-        Health -= unit.Health;
+            if (health <= 0)
+            {
+                Debug.Log("Game over!");
+            }
+        }
+
+        public void OnUnitReachedGoal(Unit unit)
+        {
+            Health -= unit.Health;
+        }
     }
 }

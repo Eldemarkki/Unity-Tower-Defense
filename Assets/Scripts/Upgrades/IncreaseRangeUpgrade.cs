@@ -1,12 +1,16 @@
-﻿using UnityEngine;
+﻿using Eldemarkki.TowerDefenseGame.Turrets;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Increase Range Upgrade", menuName = "Tower Defense/Upgrades/Increase Range Upgrade")]
-public class IncreaseRangeUpgrade : TurretUpgrade
+namespace Eldemarkki.TowerDefenseGame.Upgrades
 {
-    [SerializeField] private int rangeIncrease;
-
-    public override void ApplyToTurret(Turret turret)
+    [CreateAssetMenu(fileName = "New Increase Range Upgrade", menuName = "Tower Defense/Upgrades/Increase Range Upgrade")]
+    public class IncreaseRangeUpgrade : TurretUpgrade
     {
-        turret.Range += rangeIncrease;
+        [SerializeField] private int rangeIncrease;
+
+        public override void ApplyToTurret(Turret turret)
+        {
+            turret.Range += rangeIncrease;
+        }
     }
 }

@@ -1,28 +1,32 @@
 ﻿using System.Linq;
+using Eldemarkki.TowerDefenseGame.Units;
 using UnityEngine;
 
-public class UnitSettingsManager : MonoBehaviour
+namespace Eldemarkki.TowerDefenseGame.Managers
 {
-    public static UnitSettingsManager instance;
-
-    [SerializeField] private UnitSettings[] allUnitSettings;
-
-    private void Awake()
+    public class UnitSettingsManager : MonoBehaviour
     {
-        instance = this;
-        allUnitSettings = allUnitSettings.OrderBy(s => s.startingHealth).ToArray();
-    }
+        public static UnitSettingsManager instance;
 
-    // Gets the first UnitSettings whose startingHealth is greater than or equal to the health parameter. allUnitSettings is sorted to an increasing order
-    public UnitSettings GetUnitSettingsByHealth(int health)
-    {
-        for (int i = 0; i < allUnitSettings.Length; i++)
+        [SerializeField] private UnitSettings[] allUnitSettings;
+
+        private void Awake()
         {
-            UnitSettings item = allUnitSettings[i];
-            if (item.startingHealth >= health)
-                return item;
+            instance = this;
+            allUnitSettings = allUnitSettings.OrderBy(s => s.startingHealth).ToArray();
         }
 
-        return null;
+        // Gets the first UnitSettings whose startingHealth is greater than or equal to the health parameter. allUnitSettings is sorted to an increasing order
+        public UnitSettings GetUnitSettingsByHealth(int health)
+        {
+            for (int i = 0; i < allUnitSettings.Length; i++)
+            {
+                UnitSettings item = allUnitSettings[i];
+                if (item.startingHealth >= health)
+                    return item;
+            }
+
+            return null;
+        }
     }
 }

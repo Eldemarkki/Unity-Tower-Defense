@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 
-public static class Utils
+namespace Eldemarkki.TowerDefenseGame.Utilities
 {
-    public static float SqrDistance(Vector2 a, Vector2 b)
+    public static class Utils
     {
-        return (a - b).sqrMagnitude;
+        public static float SqrDistance(Vector2 a, Vector2 b)
+        {
+            return (a - b).sqrMagnitude;
+        }
     }
 }

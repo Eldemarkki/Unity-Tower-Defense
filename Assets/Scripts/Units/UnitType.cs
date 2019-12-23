@@ -1,5 +1,8 @@
-﻿public enum UnitType
+﻿namespace Eldemarkki.TowerDefenseGame.Units
 {
-    Enemy,
-    Wait
+    public enum UnitType
+    {
+        Enemy,
+        Wait
+    }
 }

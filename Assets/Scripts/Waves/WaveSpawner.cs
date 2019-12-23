@@ -1,48 +1,53 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Eldemarkki.TowerDefenseGame.Miscellaneous;
+using Eldemarkki.TowerDefenseGame.Units;
 using UnityEngine;
 
-public class WaveSpawner : MonoBehaviour
+namespace Eldemarkki.TowerDefenseGame.Waves
 {
-    [SerializeField] private Wave[] waves;
-    [SerializeField] private Path wavePath;
-    [SerializeField] private int waveIndex;
-    [SerializeField] private GameObject unitPrefab;
-
-    [HideInInspector] public List<Unit> spawnedUnits;
-
-    private void Start()
+    public class WaveSpawner : MonoBehaviour
     {
-        Wave wave = waves[waveIndex];
-        StartCoroutine(InitiateWave(wave));
-    }
+        [SerializeField] private Wave[] waves;
+        [SerializeField] private Path wavePath;
+        [SerializeField] private int waveIndex;
+        [SerializeField] private GameObject unitPrefab;
 
-    private IEnumerator InitiateWave(Wave wave)
-    {
-        Vector3 spawnPosition = wavePath.points[0].position;
-        for (int i = 0; i < wave.waveUnits.Length; i++)
+        [HideInInspector] public List<Unit> spawnedUnits;
+
+        private void Start()
         {
-            WavePart waveUnit = wave.waveUnits[i];
-            UnitType unitType = waveUnit.unitType;
-            if (unitType == UnitType.Enemy)
+            Wave wave = waves[waveIndex];
+            StartCoroutine(InitiateWave(wave));
+        }
+
+        private IEnumerator InitiateWave(Wave wave)
+        {
+            Vector3 spawnPosition = wavePath.points[0].position;
+            for (int i = 0; i < wave.waveUnits.Length; i++)
             {
-                UnitSettings settings = waveUnit.unitSettings;
-                for (int j = 0; j < waveUnit.unitCount; j++)
+                WavePart waveUnit = wave.waveUnits[i];
+                UnitType unitType = waveUnit.unitType;
+                if (unitType == UnitType.Enemy)
                 {
-                    Unit unit = Instantiate(unitPrefab, spawnPosition, Quaternion.identity).GetComponent<Unit>();
-                    unit.path = wavePath;
-                    unit.waveSpawner = this;
+                    UnitSettings settings = waveUnit.unitSettings;
+                    for (int j = 0; j < waveUnit.unitCount; j++)
+                    {
+                        Unit unit = Instantiate(unitPrefab, spawnPosition, Quaternion.identity).GetComponent<Unit>();
+                        unit.path = wavePath;
+                        unit.waveSpawner = this;
 
-                    unit.Initialize(settings);
+                        unit.Initialize(settings);
 
-                    spawnedUnits.Add(unit);
+                        spawnedUnits.Add(unit);
 
-                    yield return new WaitForSeconds(1f / waveUnit.spawnRate);
+                        yield return new WaitForSeconds(1f / waveUnit.spawnRate);
+                    }
                 }
-            }
-            else if (unitType == UnitType.Wait)
-            {
-                yield return new WaitForSeconds(waveUnit.waitTime);
+                else if (unitType == UnitType.Wait)
+                {
+                    yield return new WaitForSeconds(waveUnit.waitTime);
+                }
             }
         }
     }

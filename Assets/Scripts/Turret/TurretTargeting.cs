@@ -1,8 +1,11 @@
-﻿public enum TurretTargeting
+﻿namespace Eldemarkki.TowerDefenseGame.Turrets
 {
-    First,
-    Last,
-    Closest,
-    Strongest,
-    Weakest
+    public enum TurretTargeting
+    {
+        First,
+        Last,
+        Closest,
+        Strongest,
+        Weakest
+    }
 }

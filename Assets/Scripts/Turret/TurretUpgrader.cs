@@ -1,104 +1,109 @@
-﻿using TMPro;
+﻿using Eldemarkki.TowerDefenseGame.Managers;
+using Eldemarkki.TowerDefenseGame.Upgrades;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Turret))]
-public class TurretUpgrader : MonoBehaviour
+namespace Eldemarkki.TowerDefenseGame.Turrets
 {
-    [Header("Left Upgrade Path")]
-    [SerializeField] private TurretUpgrade[] leftUpgrades;
-    [SerializeField] private Button leftUpgradeButton;
-    [SerializeField] private TMP_Text leftUpgradeCostText;
-
-    [Header("Right Upgrade Path")]
-    [SerializeField] private TurretUpgrade[] rightUpgrades;
-    [SerializeField] private Button rightUpgradeButton;
-    [SerializeField] private TMP_Text rightUpgradeCostText;
-
-    [Header("Both")]
-    [SerializeField] private Sprite noUpgradesRemainingIcon;
-
-    private int leftPathNextUpgradeIndex;
-    private int rightPathNextUpgradeIndex;
-    private MoneyManager moneyManager;
-    private Turret turret;
-
-    private void Awake()
+    [RequireComponent(typeof(Turret))]
+    public class TurretUpgrader : MonoBehaviour
     {
-        turret = GetComponent<Turret>();
-    }
+        [Header("Left Upgrade Path")]
+        [SerializeField] private TurretUpgrade[] leftUpgrades;
+        [SerializeField] private Button leftUpgradeButton;
+        [SerializeField] private TMP_Text leftUpgradeCostText;
 
-    private void Start()
-    {
-        moneyManager = MoneyManager.instance;
-        UpdateUI(leftUpgrades[0], UpgradePath.Left);
-        UpdateUI(rightUpgrades[0], UpgradePath.Right);
-    }
+        [Header("Right Upgrade Path")]
+        [SerializeField] private TurretUpgrade[] rightUpgrades;
+        [SerializeField] private Button rightUpgradeButton;
+        [SerializeField] private TMP_Text rightUpgradeCostText;
 
-    public void TryUpgradeLeftPath()
-    {
-        TryUpgradePath(UpgradePath.Left);
-    }
+        [Header("Both")]
+        [SerializeField] private Sprite noUpgradesRemainingIcon;
 
-    public void TryUpgradeRightPath()
-    {
-        TryUpgradePath(UpgradePath.Right);
-    }
+        private int leftPathNextUpgradeIndex;
+        private int rightPathNextUpgradeIndex;
+        private MoneyManager moneyManager;
+        private Turret turret;
 
-    private void TryUpgradePath(UpgradePath upgradePath)
-    {
-        TurretUpgrade upgrade = null;
-        if (upgradePath == UpgradePath.Left && leftPathNextUpgradeIndex < leftUpgrades.Length)
+        private void Awake()
         {
-            upgrade = leftUpgrades[leftPathNextUpgradeIndex];
-        }
-        else if (upgradePath == UpgradePath.Right && rightPathNextUpgradeIndex < rightUpgrades.Length)
-        {
-            upgrade = rightUpgrades[rightPathNextUpgradeIndex];
+            turret = GetComponent<Turret>();
         }
 
-        if (upgrade != null && moneyManager.HasEnoughMoneyForPurchase(upgrade.cost))
+        private void Start()
         {
-            moneyManager.Money -= upgrade.cost;
-            upgrade.ApplyToTurret(turret);
-
-            if (upgradePath == UpgradePath.Left) leftPathNextUpgradeIndex++; 
-            else if (upgradePath == UpgradePath.Right) rightPathNextUpgradeIndex++;
-
-            UpdateUI(upgrade, upgradePath);
+            moneyManager = MoneyManager.instance;
+            UpdateUI(leftUpgrades[0], UpgradePath.Left);
+            UpdateUI(rightUpgrades[0], UpgradePath.Right);
         }
-    }
 
-    private void UpdateUI(TurretUpgrade upgrade, UpgradePath upgradePath)
-    {
-        if (upgradePath == UpgradePath.Left)
+        public void TryUpgradeLeftPath()
         {
-            // Set the icon
-            if (leftPathNextUpgradeIndex >= leftUpgrades.Length)
+            TryUpgradePath(UpgradePath.Left);
+        }
+
+        public void TryUpgradeRightPath()
+        {
+            TryUpgradePath(UpgradePath.Right);
+        }
+
+        private void TryUpgradePath(UpgradePath upgradePath)
+        {
+            TurretUpgrade upgrade = null;
+            if (upgradePath == UpgradePath.Left && leftPathNextUpgradeIndex < leftUpgrades.Length)
             {
-                leftUpgradeButton.image.sprite = noUpgradesRemainingIcon;
-                leftUpgradeButton.interactable = false;
-                leftUpgradeCostText.gameObject.SetActive(false);
+                upgrade = leftUpgrades[leftPathNextUpgradeIndex];
             }
-            else
+            else if (upgradePath == UpgradePath.Right && rightPathNextUpgradeIndex < rightUpgrades.Length)
             {
-                leftUpgradeButton.image.sprite = upgrade.icon;
-                leftUpgradeCostText.text = "$" + upgrade.cost;
+                upgrade = rightUpgrades[rightPathNextUpgradeIndex];
+            }
+
+            if (upgrade != null && moneyManager.HasEnoughMoneyForPurchase(upgrade.cost))
+            {
+                moneyManager.Money -= upgrade.cost;
+                upgrade.ApplyToTurret(turret);
+
+                if (upgradePath == UpgradePath.Left) leftPathNextUpgradeIndex++;
+                else if (upgradePath == UpgradePath.Right) rightPathNextUpgradeIndex++;
+
+                UpdateUI(upgrade, upgradePath);
             }
         }
-        else if (upgradePath == UpgradePath.Right)
+
+        private void UpdateUI(TurretUpgrade upgrade, UpgradePath upgradePath)
         {
-            // Set the icon
-            if (rightPathNextUpgradeIndex >= rightUpgrades.Length)
+            if (upgradePath == UpgradePath.Left)
             {
-                rightUpgradeButton.image.sprite = noUpgradesRemainingIcon;
-                rightUpgradeButton.interactable = false;
-                rightUpgradeCostText.gameObject.SetActive(false);
+                // Set the icon
+                if (leftPathNextUpgradeIndex >= leftUpgrades.Length)
+                {
+                    leftUpgradeButton.image.sprite = noUpgradesRemainingIcon;
+                    leftUpgradeButton.interactable = false;
+                    leftUpgradeCostText.gameObject.SetActive(false);
+                }
+                else
+                {
+                    leftUpgradeButton.image.sprite = upgrade.icon;
+                    leftUpgradeCostText.text = "$" + upgrade.cost;
+                }
             }
-            else
+            else if (upgradePath == UpgradePath.Right)
             {
-                rightUpgradeButton.image.sprite = upgrade.icon;
-                rightUpgradeCostText.text = "$" + upgrade.cost;
+                // Set the icon
+                if (rightPathNextUpgradeIndex >= rightUpgrades.Length)
+                {
+                    rightUpgradeButton.image.sprite = noUpgradesRemainingIcon;
+                    rightUpgradeButton.interactable = false;
+                    rightUpgradeCostText.gameObject.SetActive(false);
+                }
+                else
+                {
+                    rightUpgradeButton.image.sprite = upgrade.icon;
+                    rightUpgradeCostText.text = "$" + upgrade.cost;
+                }
             }
         }
     }

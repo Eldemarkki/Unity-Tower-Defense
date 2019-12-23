@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Wave", menuName = "Tower Defense/Wave")]
-public class Wave : ScriptableObject
+namespace Eldemarkki.TowerDefenseGame.Waves
 {
-    public WavePart[] waveUnits;
+    [CreateAssetMenu(fileName = "New Wave", menuName = "Tower Defense/Wave")]
+    public class Wave : ScriptableObject
+    {
+        public WavePart[] waveUnits;
+    }
 }

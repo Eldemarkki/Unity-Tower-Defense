@@ -1,10 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Unit Settings", menuName = "Tower Defense/Unit Settings")]
-public class UnitSettings : ScriptableObject
+namespace Eldemarkki.TowerDefenseGame.Units
 {
-    public Sprite sprite;
-    public Color spriteColor;
-    public float speed;
-    public int startingHealth;
+    [CreateAssetMenu(fileName = "New Unit Settings", menuName = "Tower Defense/Unit Settings")]
+    public class UnitSettings : ScriptableObject
+    {
+        public Sprite sprite;
+        public Color spriteColor;
+        public float speed;
+        public int startingHealth;
+    }
 }

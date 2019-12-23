@@ -1,37 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IPointerDownHandler
+namespace Eldemarkki.TowerDefenseGame.Miscellaneous
 {
-    private bool isDragging;
-    public bool IsDragging { get => isDragging; set => isDragging = value; }
-
-    public delegate void OnDropEvent();
-    public OnDropEvent OnDropped;
-
-    public delegate void OnCancelPurchaseEvent();
-    public OnCancelPurchaseEvent OnCancelledPurchase;
-
-    private void Update()
+    public class DragAndDrop : MonoBehaviour, IPointerDownHandler
     {
-        if (isDragging)
-        {
-            Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            position.z = 0;
-            transform.position = position;
-        }
-    }
+        private bool isDragging;
+        public bool IsDragging { get => isDragging; set => isDragging = value; }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        public delegate void OnDropEvent();
+        public OnDropEvent OnDropped;
+
+        public delegate void OnCancelPurchaseEvent();
+        public OnCancelPurchaseEvent OnCancelledPurchase;
+
+        private void Update()
         {
-            isDragging = false;
-            OnDropped?.Invoke();
+            if (isDragging)
+            {
+                Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                position.z = 0;
+                transform.position = position;
+            }
         }
-        else if (eventData.button == PointerEventData.InputButton.Right)
+
+        public void OnPointerDown(PointerEventData eventData)
         {
-            OnCancelledPurchase?.Invoke();
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                isDragging = false;
+                OnDropped?.Invoke();
+            }
+            else if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                OnCancelledPurchase?.Invoke();
+            }
         }
     }
 }
