@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 5 Second Wait
   m_EditorClassIdentifier: 
   unitType: 1
-  prefab: {fileID: 0}
+  unitSettings: {fileID: 0}
   unitCount: 0
-  timeBetweenUnits: 0
+  spawnRate: 0
   waitTime: 5

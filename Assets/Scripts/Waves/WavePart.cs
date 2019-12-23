@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Wave Unit", menuName = "Tower Defense/Wave Unit")]
-public class WaveUnit : ScriptableObject
+[CreateAssetMenu(fileName = "New Wave Part", menuName = "Tower Defense/Wave Part")]
+public class WavePart : ScriptableObject
 {
     public UnitType unitType;
 

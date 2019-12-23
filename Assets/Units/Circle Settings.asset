@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Circle Settings
   m_EditorClassIdentifier: Assembly-CSharp::UnitSettings
-  unitName: Circle
   sprite: {fileID: 21300000, guid: 21fff10c771b67044a87068970461994, type: 3}
   spriteColor: {r: 1, g: 0.5990566, b: 0.5990566, a: 1}
   speed: 1

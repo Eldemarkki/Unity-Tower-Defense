@@ -22,7 +22,7 @@ public class WaveSpawner : MonoBehaviour
         Vector3 spawnPosition = wavePath.points[0].position;
         for (int i = 0; i < wave.waveUnits.Length; i++)
         {
-            WaveUnit waveUnit = wave.waveUnits[i];
+            WavePart waveUnit = wave.waveUnits[i];
             UnitType unitType = waveUnit.unitType;
             if (unitType == UnitType.Enemy)
             {

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 296b34d03e63af04cb064ab4c9659add, type: 3}
-  m_Name: Turret1
+  m_Name: Turret 1
   m_EditorClassIdentifier: 
   cost: 20
   turretPrefab: {fileID: 2447080616745063292, guid: c6ce93c190801ca4a8bc88b260f59de8,
