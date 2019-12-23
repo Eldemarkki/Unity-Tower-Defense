@@ -21,6 +21,8 @@ public class Turret : MonoBehaviour
     private WaveSpawner waveSpawner;
     private float cooldownLeft;
 
+    public int Damage { get => damage; set => damage = value; }
+
     public float Range
     {
         get => range;
@@ -48,7 +50,7 @@ public class Turret : MonoBehaviour
                 Unit target = GetTarget(turretTargeting, transform.position, unitsInRange);
 
                 ShootAtUnit(target);
-                LookAtPosition(target.transform.position);
+                // LookAtPosition(target.transform.position);
             }
         }
 
