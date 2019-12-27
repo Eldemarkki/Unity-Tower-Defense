@@ -22,9 +22,11 @@ namespace Eldemarkki.TowerDefenseGame.Turrets
 
         [Header("Other")]
         [SerializeField] private Transform rangeDisplay;
+        [SerializeField] private Transform turretInfoCanvas;
 
         private WaveSpawner waveSpawner;
         private float cooldownLeft;
+        private bool selected;
 
         public int Damage { get => damage; set => damage = value; }
 
@@ -32,6 +34,13 @@ namespace Eldemarkki.TowerDefenseGame.Turrets
         {
             get => range;
             set => SetRange(value);
+        }
+        public bool Selected { get => selected; set => SetSelected(value); }
+
+        private void SetSelected(bool value)
+        {
+            rangeDisplay.gameObject.SetActive(value);
+            turretInfoCanvas.gameObject.SetActive(value);
         }
 
         private void Awake()

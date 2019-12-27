@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2557254120954462918
 RectTransform:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 2293583769882919149}
   - component: {fileID: 2447080616745063291}
   - component: {fileID: 7501193624037176361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,6 +589,7 @@ MonoBehaviour:
     type: 3}
   projectileSpeed: 300
   rangeDisplay: {fileID: 7372283561339808073}
+  turretInfoCanvas: {fileID: 2557254120954462918}
 --- !u!114 &-7247009440993720151
 MonoBehaviour:
   m_ObjectHideFlags: 0

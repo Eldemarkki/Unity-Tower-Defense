@@ -14,6 +14,7 @@ namespace Eldemarkki.TowerDefenseGame.Shops
         [SerializeField] private RectTransform shopButtonHolder;
 
         [SerializeField] private MoneyManager moneyManager;
+        [SerializeField] private SelectManager selectManager;
 
         private void Start()
         {
@@ -48,6 +49,8 @@ namespace Eldemarkki.TowerDefenseGame.Shops
                 // Disable shooting
                 Turret turret = purchasedTurret.GetComponent<Turret>();
                 turret.enabled = false;
+
+                selectManager.Select(turret);
 
                 // When it is dropped, disable dragging to lock it in place and enable shooting
                 dragAndDrop.OnDropped += () =>
